@@ -1,0 +1,17 @@
+version: '3.8'
+
+services:
+  ubuntu-lab:
+    # 'build: .' tells compose to look for a Dockerfile in the current directory
+    build: .
+    container_name: ubuntu_dev_lab
+    tty: true 
+    stdin_open: true
+    ports:
+      - "8000:8000"   # Laravel / PHP
+      - "3000:3000"   # Next.js / NestJS
+      - "5173:5173"   # Vite
+      - "80:80"       # Nginx
+    volumes:
+      - ./app:/var/www
+    restart: unless-stopped
