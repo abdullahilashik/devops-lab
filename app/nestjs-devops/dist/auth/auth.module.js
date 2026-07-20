@@ -14,10 +14,11 @@ let AuthModule = class AuthModule {
 };
 exports.AuthModule = AuthModule;
 exports.AuthModule = AuthModule = __decorate([
+    (0, common_1.Global)(),
     (0, common_1.Module)({
         controllers: [auth_controller_1.AuthController],
         providers: [auth_service_1.AuthService],
-        exports: [auth_service_1.AuthService],
+        exports: [],
     })
 ], AuthModule);
 //# sourceMappingURL=auth.module.js.map
