@@ -2,7 +2,13 @@ import { Injectable } from '@nestjs/common';
 
 @Injectable()
 export class AuthService {
-  checkAuth() {
-    return 'authenticated';
+  signInLocal() {
+
   }
+
+  signUpLocal() { }
+  
+  logout() { }
+  
+  refresh() { }
 }
