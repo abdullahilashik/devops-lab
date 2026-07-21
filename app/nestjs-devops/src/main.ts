@@ -5,7 +5,7 @@ import { ConsoleLogger } from '@nestjs/common';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule, {
     logger: new ConsoleLogger({
-      colors: false,
+      colors: true,
       // logLevels: ['error', 'warn', 'fatal'],
       json: false,
       compact: true,

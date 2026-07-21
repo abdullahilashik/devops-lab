@@ -8,6 +8,6 @@ export class UsersService {
 
   sayHello() {
     this.logger.log('User service returned auth check');
-    return `Hello user is ${this.authService.checkAuth()}`;
+    return `Hello user`;
   }
 }
