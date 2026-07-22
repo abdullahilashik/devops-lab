@@ -14,14 +14,14 @@ import { PrefModule } from './pref/pref.module';
     ConfigModule, 
     PrefModule, 
     AuthModule,
-    PrefModule.forRootAsync({
-      inject: [ConfigService],
-      useFactory: (configService: ConfigService) => {
-        return {
-          apiKey: configService.get('API_KEY') || '',
-        }
-      },
-    })
+    // PrefModule.forRootAsync({
+    //   inject: [ConfigService],
+    //   useFactory: (configService: ConfigService) => {
+    //     return {
+    //       apiKey: configService.get('API_KEY') || '',
+    //     }
+    //   },
+    // })
   ],
   controllers: [AppController],
   providers: [AppService],
