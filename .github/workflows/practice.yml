@@ -1,0 +1,33 @@
+name: Github CI/CD Practice
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+
+jobs:
+  build-and-test:
+    runs_on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: ./app/nestjs-devops
+
+    steps:
+      - name: Repository Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup nodejs
+        uses: actions/setup-node@v4
+        with:
+          node: [22]
+
+      - name: Install dependencies
+        run: npm ci # clean install
+
+      - name: Prisma Build
+        run: npx prisma generate
+
+      - name: Build application
+        run: npm run build
