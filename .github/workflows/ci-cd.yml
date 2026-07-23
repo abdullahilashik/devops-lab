@@ -32,3 +32,10 @@ jobs:
       - name: Run tests
         run: npm test
 
+  deploy:
+    needs: build-and-test
+
+    steps:
+      - name: Deploy to production
+        run: |
+          echo "Dploying to production EC2"
