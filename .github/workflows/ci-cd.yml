@@ -27,10 +27,15 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
+        
+        # Pro Tip: Caching npm dependencies based on the lock file in the subfolder
+        cache: 'npm'
+        cache-dependency-path: app/nestjs-devops/package-lock.json
 
       # Install dependencies
       - name: Install dependencies
         run: npm i --force
+                
 
       # Run tests
       - name: Run tests
