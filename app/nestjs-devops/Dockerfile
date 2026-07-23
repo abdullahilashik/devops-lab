@@ -1,24 +1,30 @@
-# Stage 1 - build
-FROM node:20-alpine AS build
+# STAGE 1: Build
+FROM node:22-alpine AS build
 WORKDIR /app
 
-# COPY package fiels first
+# Copy package files first
 COPY package*.json ./
-RUN npm run ci
+
+# CORRECT: No "run" here. 'ci' is a built-in command.
+RUN npm ci
 
 # COPY rest of the code and build it
 COPY . .
+
+# CORRECT: "build" is a custom script in package.json, so we use "run"
 RUN npm run build
 
-# Stage 2 - Production
-FROM node:20-alpine
+# STAGE 2: Production
+FROM node:22-alpine
 WORKDIR /app
 
-# Only copy production dependencies and build folders
-COPY --from=build app/package*.json ./
-RUN npm run install --only=production
-COPY --from=build app/dist ./dist
+# Only copy production dependencies and the compiled 'dist' folder
+COPY --from=build /app/package*.json ./
 
+# CORRECT: No "run" here.
+RUN npm ci --only=production
 
-# RUN THE APP
-CMD ['node','dist/main.js']
+COPY --from=build /app/dist ./dist
+
+# Exec form to prevent OS signal issues
+CMD ["node", "dist/main"]
