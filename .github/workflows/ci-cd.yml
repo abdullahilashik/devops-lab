@@ -12,5 +12,11 @@ jobs:
 
     steps:
       # Check out names
-      - name: Check the repository
+      - name: 🤖 Check the repository
         uses: actions/checkout@v4
+
+      # Install nodejs
+      - name: ⚙️ Setup nodejs
+        uses: actions/setup-node@v4
+        with:
+          node-version: [18, 20]
