@@ -9,9 +9,9 @@ on:
 jobs:
   build-and-test:
     runs-on: ubuntu-latest
-    default:
+    defaults:
       run:
-        working_dir: app/nestjs-devops
+        working-directory: ./app/nestjs-devops
 
     steps:
       # Check out names
@@ -25,3 +25,4 @@ jobs:
           node-version: 20
 
       # Install dependencies
+
