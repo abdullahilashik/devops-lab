@@ -4,7 +4,7 @@ WORKDIR /app
 
 # COPY package fiels first
 COPY package*.json ./
-RUN npm run install --force
+RUN npm run ci
 
 # COPY rest of the code and build it
 COPY . .
