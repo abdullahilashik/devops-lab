@@ -42,7 +42,7 @@ jobs:
 
   deploy:
     runs-on: ubuntu-latest
-    needs: build-and-test 
+    needs: build-image
 
     if: github.ref == 'refs/heads/master'   # only deploy from the master branch
 
