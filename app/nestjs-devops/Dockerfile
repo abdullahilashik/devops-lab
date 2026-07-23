@@ -2,22 +2,14 @@
 FROM node:22-alpine AS build
 WORKDIR /app
 
-# Copy package files first
 COPY package*.json ./
-
-# Install dependencies
 RUN npm ci
 
-# Copy the rest of the code
 COPY . .
 
-# --- NEW STEP START ---
-# Generate the Prisma Client
-# This reads your schema.prisma and creates the 'generated/prisma/client' folder
+# This creates the folder /app/generated (because of your custom schema config)
 RUN npx prisma generate
-# --- NEW STEP END ---
 
-# Now that the client is generated, the build will succeed
 RUN npm run build
 
 # STAGE 2: Production
@@ -27,10 +19,9 @@ WORKDIR /app
 COPY --from=build /app/package*.json ./
 RUN npm ci --only=production
 
-# We MUST also copy the generated prisma client to the production stage
-# because the production stage starts from a fresh image
-COPY --from=build /app/node_modules/.prisma ./node_modules/.prisma
-# If you have a custom output folder like 'generated/', copy that too:
+# REMOVED: The line trying to copy /app/node_modules/.prisma (it doesn't exist!)
+
+# KEEP THIS: This copies your custom generated client
 COPY --from=build /app/generated ./generated 
 
 COPY --from=build /app/dist ./dist
