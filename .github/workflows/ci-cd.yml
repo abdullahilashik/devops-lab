@@ -5,6 +5,7 @@ on:
     branches: [master]
     paths:
       - "app/nestjs-devops/**" # only trigger if nestjs is updated
+      - ".github/workflows/*"
   pull_request:
     branches: [master]
 
