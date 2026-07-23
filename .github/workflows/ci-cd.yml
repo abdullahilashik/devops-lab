@@ -3,6 +3,8 @@ name: Github CI CD
 on:
   push:
     branches: [master]
+    paths:
+      - "app/nestjs-devops/**" # only trigger if nestjs is updated
   pull_request:
     branches: [master]
 
@@ -26,11 +28,7 @@ jobs:
       - name: Setup nodejs
         uses: actions/setup-node@v4
         with:
-          node-version: 20
-        
-        # Pro Tip: Caching npm dependencies based on the lock file in the subfolder
-        cache: 'npm'
-        cache-dependency-path: app/nestjs-devops/package-lock.json
+          node-version: 20              
 
       # Install dependencies
       - name: Install dependencies
