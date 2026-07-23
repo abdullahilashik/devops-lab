@@ -10,7 +10,7 @@ jobs:
   build-and-test:
     runs-on: ubuntu-latest
 
-  steps:
-
-    - name: Check the repository
-      uses: actions/checkout@v4
+    steps:
+      # Check out names
+      - name: Check the repository
+        uses: actions/checkout@v4
