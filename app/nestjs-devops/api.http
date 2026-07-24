@@ -1,0 +1,6 @@
+# Login
+POST http://localhost:3000/auth/local/signin
+
+### Register
+
+POST http://localhost:3000/auth/local/signup
