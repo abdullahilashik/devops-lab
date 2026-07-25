@@ -11,6 +11,7 @@ jobs:
 
   build-and-test:
     runs-on: ubuntu-latest
+    if: github.ref_name == '/refs/heads/master'
     defaults:
       run:
         working-directory: app/nestjs-devops
@@ -34,8 +35,7 @@ jobs:
 
   build-image:
     needs: build-and-test
-    runs-on: ubuntu-latest
-    if: github.ref_name == '/refs/heads/master'
+    runs-on: ubuntu-latest    
     permissions:
       contents: read
       packages: write
