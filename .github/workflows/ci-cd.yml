@@ -17,15 +17,15 @@ jobs:
 
     steps:
       - name: Checkout branch
-        usage: actions/checkout@v4
+        uses: actions/checkout@v4
 
       - name: Setup nodejs
-        usage: action/setup-node@v4
+        uses: action/setup-node@v4
         with:
           node: 24
 
       - name: Install dependencies
-        usage: npm ci
+        uses: npm ci
 
       - name: Run test
         run: npm run test
