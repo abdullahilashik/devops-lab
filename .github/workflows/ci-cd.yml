@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: /app/nestjs-devops
+        working-directory: app/nestjs-devops
 
     steps:
       - name: Checkout branch
