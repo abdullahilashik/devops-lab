@@ -35,7 +35,7 @@ jobs:
   build-image:
     needs: build-and-test
     runs-on: ubuntu-latest
-    if: github.ref_name == 'refs/heads/master'
+    if: github.ref_name == '/refs/heads/master'
     permissions:
       contents: read
       packages: write
