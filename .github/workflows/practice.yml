@@ -37,7 +37,7 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: read
-      package: write
+      packages: write
     # if: github.ref == 'refs/heads/master'
 
     steps:
