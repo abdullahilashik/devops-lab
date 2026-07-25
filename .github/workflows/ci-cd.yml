@@ -3,10 +3,7 @@ run-name: Deployment for ${{ github.ref_name }} by ${{ github.actor }}
 
 on:
   push:
-    branches: [master]
-    paths:
-      - "./app/nestjs-devops"
-      - "./.github/workflows/ci-cd-yml"
+    branches: [master]    
   pull_request:
     branches: [master]
 
