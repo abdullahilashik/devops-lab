@@ -53,7 +53,7 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Docker build and push
-        uses: actions/build-push-action@v5
+        uses: docker/build-push-action@v5
         with:
           context: app/nestjs-devops
           push: true
