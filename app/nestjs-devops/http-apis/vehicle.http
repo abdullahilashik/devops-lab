@@ -1,0 +1,11 @@
+### Get the basic vehicle information
+POST http://localhost:3000/vehicle/create
+Content-Type: application/json
+
+{
+    "name": "Toyota Pocketbunny",
+    "make": "Toyota",
+    "model": "Pocketbunny",
+    "year": "2025",
+    "condition": "used"
+}

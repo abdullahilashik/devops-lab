@@ -6,6 +6,7 @@ import { AuthModule } from './auth/auth.module';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { PrismaModule } from './prisma/prisma.module';
 import { PrefModule } from './pref/pref.module';
+import { VehicleModule } from './vehicle/vehicle.module';
 
 @Module({
   imports: [
@@ -13,7 +14,7 @@ import { PrefModule } from './pref/pref.module';
     PrismaModule, 
     ConfigModule, 
     PrefModule, 
-    AuthModule,
+    AuthModule, VehicleModule,
     // PrefModule.forRootAsync({
     //   inject: [ConfigService],
     //   useFactory: (configService: ConfigService) => {
