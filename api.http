@@ -1,0 +1,18 @@
+POST https://drive-boot.graphcdn.app/
+
+Content-Type: application/json
+Accept: application/json
+
+{
+    "operationName": "GET_WP_REVIEWS_ARCHIVE_ARTICLES",
+    "variables": {
+        "first": 30,
+        "after": "YXJyYXljb25uZWN0aW9uOjM1NjczNTM=",
+        "stickyType": [
+            "sticky"
+        ],
+        "reviewsFormat": "",
+        "carType": ""
+    },
+    "query": "query GET_WP_REVIEWS_ARCHIVE_ARTICLES($first: Int, $after: String, $stickyType: [String], $carType: String, $reviewsFormat: String, $segment: String, $make: String, $model: String) {\n  archiveArticles: reviews(\n    first: $first\n    after: $after\n    where: {tagSlugNotIn: $stickyType, reviewsType: $carType, reviewsFormat: $reviewsFormat, segment: $segment, make: $make, model: $model}\n  ) {\n    edges {\n      node {\n        id\n        uri\n        title\n        date\n        disqus {\n          threadIdentifier\n          threadID\n          __typename\n        }\n        stickyPosts {\n          stickyType\n          __typename\n        }\n        tags {\n          nodes {\n            id\n            name\n            __typename\n          }\n          __typename\n        }\n        databaseId\n        mediumThumbnail: featuredImage {\n          node {\n            ...ImageMediumThumbnailFragment\n            __typename\n          }\n          __typename\n        }\n        singleReview {\n          reviewsMeta {\n            hero {\n              fileType\n              video\n              mediumThumbnail: gallery {\n                ...ImageMediumThumbnailFragment\n                __typename\n              }\n              __typename\n            }\n            __typename\n          }\n          __typename\n        }\n        attachedVehicles {\n          vehicleRating {\n            efficiency\n            fitness\n            handling\n            infotainment\n            interior\n            overall\n            performance\n            ride\n            safety\n            technology\n            value\n            __typename\n          }\n          __typename\n        }\n        author {\n          node {\n            name\n            uri\n            slug\n            avatar {\n              cloudinary {\n                cloudName\n                deliveryType\n                publicId\n                __typename\n              }\n              url\n              __typename\n            }\n            __typename\n          }\n          __typename\n        }\n        categories: reviewsFormat(first: 1) {\n          nodes {\n            name\n            __typename\n          }\n          __typename\n        }\n        __typename\n      }\n      cursor\n      __typename\n    }\n    pageInfo {\n      hasNextPage\n      endCursor\n      __typename\n    }\n    __typename\n  }\n}\n\nfragment ImageMediumThumbnailFragment on MediaItem {\n  sourceUrl\n  id\n  databaseId\n  srcSet\n  title\n  sizes\n  altText\n  caption\n  cloudinary {\n    cloudName\n    publicId\n    deliveryType\n    __typename\n  }\n  mediaDetails {\n    sizes {\n      name\n      height\n      width\n      __typename\n    }\n    __typename\n  }\n  __typename\n}"
+}
