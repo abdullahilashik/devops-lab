@@ -5,17 +5,17 @@ import { AuthDTO } from './dto/auth.dto';
 @Injectable()
 export class AuthService {
 
-  constructor(private prismaService: PrismaService){}
+  constructor(private prismaService: PrismaService) { }
 
   signUpLocal(dto: AuthDTO) {
     return 'test signup';
-   }
+  }
 
   signInLocal() {
     return 'test sign in';
-  }  
-  
+  }
+
   logout() { }
-  
+
   refresh() { }
 }

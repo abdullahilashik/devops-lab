@@ -5,16 +5,16 @@ import { AuthDTO } from './dto/auth.dto';
 @Controller('auth')
 export class AuthController {
 
-    constructor(private authService: AuthService) {}
+    constructor(private authService: AuthService) { }
 
     // local sign in
     @Post('/local/signin')
-    signInLocal(@Body() dto: AuthDTO){
+    signInLocal(@Body() dto: AuthDTO) {
         this.authService.signInLocal();
     }
     // local sing up
     @Post('/local/signup')
-    signUpLocal(@Body() dto: AuthDTO){
+    signUpLocal(@Body() dto: AuthDTO) {
         this.authService.signUpLocal(dto);
     }
     // logout 
@@ -24,7 +24,7 @@ export class AuthController {
     }
     // refresh
     @Post('/refresh')
-    refresh(){
+    refresh() {
         this.authService.refresh();
     }
 }
