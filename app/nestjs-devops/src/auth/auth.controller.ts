@@ -10,13 +10,13 @@ export class AuthController {
 
     // local sign in
     @Post('/local/signin')
-    signInLocal(@Body() dto: AuthDTO): Promise<Token> {
+    signInLocal(@Body() dto: AuthDTO) {
         this.authService.signInLocal();
     }
     // local sing up
     @Post('/local/signup')
-    signUpLocal(@Body() dto: AuthDTO) {
-        this.authService.signUpLocal(dto);
+    signUpLocal(@Body() dto: AuthDTO): Promise<Token> {
+        return this.authService.signUpLocal(dto);
     }
     // logout 
     @Post('/logout')
