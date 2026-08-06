@@ -3,7 +3,9 @@ module.exports = {
     {
       name: 'nestjs-devops',
       script: 'dist/main.js',
-      watch: '.'
+      watch: '.',
+      instances: 2,
+      max_memory_restart: '45m'
     }
   ]
 };
