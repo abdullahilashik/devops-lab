@@ -1,29 +1,9 @@
-import { forwardRef, Module } from '@nestjs/common';
+import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { UsersModule } from './users/users.module';
-import { AuthModule } from './auth/auth.module';
-import { ConfigModule, ConfigService } from '@nestjs/config';
-import { PrismaModule } from './prisma/prisma.module';
-import { PrefModule } from './pref/pref.module';
-import { VehicleModule } from './vehicle/vehicle.module';
 
 @Module({
-  imports: [
-    UsersModule, 
-    PrismaModule, 
-    ConfigModule, 
-    PrefModule, 
-    AuthModule, VehicleModule,
-    // PrefModule.forRootAsync({
-    //   inject: [ConfigService],
-    //   useFactory: (configService: ConfigService) => {
-    //     return {
-    //       apiKey: configService.get('API_KEY') || '',
-    //     }
-    //   },
-    // })
-  ],
+  imports: [],
   controllers: [AppController],
   providers: [AppService],
 })

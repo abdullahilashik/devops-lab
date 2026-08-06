@@ -1,9 +1,0 @@
-### Signup Local
-
-POST http://localhost:3000/auth/local/signup
-Content-Type: application/json
-
-{
-    "email": "ashik@gmail.com",
-    "password": "123456"
-}
