@@ -1,12 +1,22 @@
 module.exports = {
-  apps: [
-    {
-      name: 'nodejs-app',
-      script: './app.js',
-      instances: 1,
-      watch: false,
-      autorestart: true,
-      max_memory_restart: '40M'
+  apps : [{
+    script: 'index.js',
+    watch: '.'
+  }, {
+    script: './service-worker/',
+    watch: ['./service-worker']
+  }],
+
+  deploy : {
+    production : {
+      user : 'SSH_USERNAME',
+      host : 'SSH_HOSTMACHINE',
+      ref  : 'origin/master',
+      repo : 'GIT_REPOSITORY',
+      path : 'DESTINATION_PATH',
+      'pre-deploy-local': '',
+      'post-deploy' : 'npm install && pm2 reload ecosystem.config.js --env production',
+      'pre-setup': ''
     }
-  ]
+  }
 };
