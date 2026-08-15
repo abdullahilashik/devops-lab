@@ -1,0 +1,16 @@
+services:
+  ubuntu:
+    build: .
+    container_name: ubuntu-lab
+    stdin_open: true
+    tty: true
+    ports:
+      - "80:80"
+      - "8443:443"
+      - "3000:3000"
+      - "3001:3001"
+      - "3002:3002"
+    volumes:
+      - ./app:/var/www                  # application code
+      - ./nginx:/etc/nginx-lab          # config backups / drafts
+      - ./data:/var/lib/lab-data        # persistent server data

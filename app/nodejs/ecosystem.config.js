@@ -1,22 +1,31 @@
 module.exports = {
-  apps : [{
-    script: 'index.js',
-    watch: '.'
-  }, {
-    script: './service-worker/',
-    watch: ['./service-worker']
-  }],
-
-  deploy : {
-    production : {
-      user : 'SSH_USERNAME',
-      host : 'SSH_HOSTMACHINE',
-      ref  : 'origin/master',
-      repo : 'GIT_REPOSITORY',
-      path : 'DESTINATION_PATH',
-      'pre-deploy-local': '',
-      'post-deploy' : 'npm install && pm2 reload ecosystem.config.js --env production',
-      'pre-setup': ''
-    }
-  }
+    apps: [
+        {
+            name: "server-a",
+            script: "app.js",
+            interceptor: 'node',
+            instances: 'max',
+            exec_mode: 'cluster',
+            max_memory_restart: "50M",
+            env: {
+                PORT: 3000
+            }
+        },
+        {
+            name: 'server-b',
+            script: 'app.js',
+            interceptor: 'node',
+            env: {
+                PORT: 3001
+            }
+        },
+        {
+            name: 'server-c',
+            script: 'app.js',
+            interceptor: 'node',
+            env: {
+                PORT: 3002
+            }
+        }
+    ]
 };

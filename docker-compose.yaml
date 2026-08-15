@@ -1,14 +1,40 @@
+version: '3.8'
+
 services:
-  ubuntu:
-    build: .
-    container_name: ubuntu-lab
-    stdin_open: true
-    tty: true
+  # The Gateway (The only one exposed to Windows)
+  nginx-proxy:
+    image: nginx:latest
+    container_name: nginx-proxy
     ports:
-      - "80:80"
+      - "8080:80"
       - "8443:443"
-      - "3000:3000"
     volumes:
-      - ./app:/var/www                  # application code
-      - ./nginx:/etc/nginx-lab          # config backups / drafts
-      - ./data:/var/lib/lab-data        # persistent server data
+      - ./nginx/conf.d:/etc/nginx/conf.d
+      - ./nginx/ssl:/etc/nginx/ssl
+      - ./app:/var/www
+    networks:
+      - backend-network
+
+  # The PHP Processor
+  php-app:
+    image: php:8.3-fpm
+    container_name: php-app
+    volumes:
+      - ./app:/var/www
+    networks:
+      - backend-network
+
+  # The Node.js API
+  nestjs-app:
+    image: node:20
+    container_name: nestjs-app
+    working_dir: /app
+    volumes:
+      - ./app/nestjs-devops:/app
+    command: "node server.js" # Assuming you have a nest app there
+    networks:
+      - backend-network
+
+networks:
+  backend-network:
+    driver: bridge
