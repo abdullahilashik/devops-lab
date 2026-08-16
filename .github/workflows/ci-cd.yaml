@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: app/nestjs-microservice
+        working-directory: ../app/nestjs-microservice
 
     steps:
       - name: Checkout
