@@ -58,7 +58,7 @@ jobs:
   build-image:
     needs: build-and-test
     runs-on: ubuntu-latest
-    permissions:
+    permission:
       contents: read
       pacakges: write
     defaults:
