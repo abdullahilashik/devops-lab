@@ -31,3 +31,17 @@ jobs:
 
       - name: Run test
         run: npm run test
+
+    deploy:
+      runs-on: ubuntu-latest
+      defaults:
+        run:
+          working-directory: app/nestjs-microservice
+
+      steps:
+        - name: Checkoiut
+          uses: actions/checkout@v7
+
+        - name: Deploy to production
+          run: |
+            echo "Deploying to server...."

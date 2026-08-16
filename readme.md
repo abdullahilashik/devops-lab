@@ -21,3 +21,32 @@ As part of devops and microservices readiness i've finished a nginx course that 
 - API gateway
 
 With these i'm pretty much confident with nginx configuration as well as PM2. From next day i will continue working on the docker container fundamentals and docker networking.
+
+
+
+### Issue:
+
+After creating a new nestjs project named nestjs-microservice i pushed some refs from newly created folder contradicting the parent .git. To fix the issue i ran the below commands and it worked.
+
+```bash
+# 1. Go into the microservice folder
+cd app/nestjs-microservice
+
+# 2. DELETE the hidden .git folder inside the microservice
+# On Windows (PowerShell):
+Remove-Item -Recurse -Force .git
+# On Mac/Linux:
+rm -rf .git
+
+# 3. Go back to the root of your whole project (devops-lab)
+cd ../..
+
+# 4. Remove the "cached" gitlink from Git's memory
+# This doesn't delete your files; it just tells Git "stop treating this as a submodule"
+git rm --cached app/nestjs-microservice -f
+
+# 5. Now add everything back correctly
+git add .
+git commit -m "Fix: Remove nested git repo and add microservice files"
+git push origin master
+```
