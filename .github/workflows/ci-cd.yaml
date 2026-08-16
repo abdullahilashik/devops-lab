@@ -7,6 +7,7 @@ on:
     paths:
       - "app/nestjs-devops/**" # only trigger if files in this folder change
       - ".github/workflows/ci-cd.yaml" # trigger if ci cd workflow updated since we are practicing
+      - "app/nestjs-devops/Dockerfile"
   pull_request:
     branches: [master]
 
