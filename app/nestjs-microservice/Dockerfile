@@ -12,7 +12,7 @@ run npm run build
 
 # Stage 2: Production
 FROM node:20-alpine
-WORKIDR /app
+WORKDIR /app
 
 # Only copy the production dependencies and the compiled 'dist folder'
 COPY --from=build /app/package.*.json ./
