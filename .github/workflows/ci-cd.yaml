@@ -3,7 +3,10 @@ run-name: Deployment for ${{ github.ref_name }} by ${{ github.actor }}
 
 on:
   push:
-    branches: [master]    
+    branches: [master]   
+    paths:
+      - "app/nestjs-devops/**" # only trigger if files in this folder change
+      - ".github/workflows/ci-cd.yaml" # trigger if ci cd workflow updated since we are practicing
   pull_request:
     branches: [master]
 
@@ -22,15 +25,19 @@ jobs:
         run: ls -R # This will now show your files!
 
       - name: Setup nodejs
-        uses: actions/setup-node@v4 # FIXED: Use the real latest version (v4)
+        uses: actions/setup-node@v4 # FIXED: Use the real latest version (v4)        
         with:
           node-version: 22
+          cache: 'npm'
+          cache-dependency-path: app/nestjs-microservice/package-lock.json
 
       - name: Install dependencies
         run: npm install
+        working-directory: app/nestjs-microservice
 
       - name: Run test
         run: npm run test
+        working-directory: app/nestjs-microservice
 
   deploy:
     runs-on: ubuntu-latest
