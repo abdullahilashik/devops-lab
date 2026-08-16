@@ -9,6 +9,7 @@ RUN npm ci
 # copy rest of the code files and build it
 COPY . .
 RUN npm ci
+RUN npm run build
 
 # Stage 2: Production
 FROM node:20-alpine
