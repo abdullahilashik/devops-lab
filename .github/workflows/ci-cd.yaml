@@ -27,7 +27,7 @@ jobs:
           # cache-dependency-path: app/nestjs-microservice/package-lock.json
 
       - name: Install dependencies
-        run: npm clean-install  
+        run: npm install
 
       - name: Run test
         run: npm run test 
