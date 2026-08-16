@@ -58,9 +58,9 @@ jobs:
   build-image:
     needs: build-and-test
     runs-on: ubuntu-latest
-    permission:
+    permissions:
       contents: read
-      pacakges: write
+      packages: write
     defaults:
       run:
         working-directory: app/nestjs-microservice
