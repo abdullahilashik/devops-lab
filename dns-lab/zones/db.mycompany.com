@@ -22,6 +22,8 @@ www     IN  CNAME   mycompany.com.
 mail    IN  A       201.131.0.11
 @       IN  MX      10 mail.mycompany.com.
 
+*.mycompany.com.     IN  A   203.12.1.4
+
 api     IN  A       203.12.1.1
 admin   IN  A       203.12.1.2
 staging IN  A       203.12.1.3
