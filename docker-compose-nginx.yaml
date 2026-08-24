@@ -1,0 +1,56 @@
+services:
+  nginx-proxy:
+    build: 
+      context: .
+      dockerfile: docker/nginx.Dockerfile
+    container_name: nginx-proxy
+    ports:
+      - "8080:8080" # Windows 8080 -> Container 8080
+      - "8443:443"
+    volumes:
+      - ./nginx/conf.d:/etc/nginx/conf.d
+      - ./nginx/ssl:/etc/nginx/ssl
+      - ./app:/var/www
+    networks:
+      - backend-network
+    depends_on:
+      php-app:
+        condition: service_healthy
+      nestjs-app:
+        condition: service_healthy
+
+  php-app:
+    build:
+      context: .
+      dockerfile: docker/php.Dockerfile
+    container_name: php-app
+    volumes:
+      - ./app:/var/www
+    networks:
+      - backend-network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9000"] # Note: This will likely fail because FPM is not HTTP, but it's the concept
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  nestjs-app:
+    build:
+      context: .
+      dockerfile: docker/node.Dockerfile
+    container_name: nestjs-app
+    working_dir: /app
+    volumes:
+      - ./app/nestjs-devops:/app
+    command: "node /app/server.js"
+    networks:
+      - backend-network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3000/"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+
+networks:
+  backend-network:
+    driver: bridge
