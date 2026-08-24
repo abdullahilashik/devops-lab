@@ -50,3 +50,30 @@ git add .
 git commit -m "Fix: Remove nested git repo and add microservice files"
 git push origin master
 ```
+
+
+### DNS Assignment
+
+docker compose up -d
+
+docker ps
+
+docker logs dns-lab
+
+dig @127.0.0.1 -p 5353 mycompany.com A
+
+dig @127.0.0.1 -p 5353 mycompany.com AAAA
+
+dig @127.0.0.1 -p 5353 www.mycompany.com CNAME
+
+dig @127.0.0.1 -p 5353 mycompany.com MX
+
+dig @127.0.0.1 -p 5353 mail.mycompany.com A
+
+dig @127.0.0.1 -p 5353 mycompany.com TXT
+
+dig @127.0.0.1 -p 5353 mycompany.com CAA
+
+dig @127.0.0.1 -p 5353 mycompany.com NS
+
+dig @127.0.0.1 -p 5353 mycompany.com SOA
