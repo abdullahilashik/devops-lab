@@ -1,0 +1,143 @@
+; File written on Wed Aug 26 13:07:48 2026
+; dnssec_signzone version 9.17.12
+mycompany.com.		300	IN SOA	ns1.mycompany.com. admin.mycompany.com. (
+					2026082601 ; serial
+					3600       ; refresh (1 hour)
+					1800       ; retry (30 minutes)
+					604800     ; expire (1 week)
+					300        ; minimum (5 minutes)
+					)
+			300	RRSIG	SOA 13 2 300 (
+					20260925060748 20260826060748 11407 mycompany.com.
+					iDIFETPcrtKLQx1Tk6N78k6pAknaWsReDYGu
+					m3Rv3YyPnxsE2eSZxNyc0ZM+Gmd+Ih4BO2hh
+					mbbtPuux/KW/bw== )
+			300	NS	ns1.mycompany.com.
+			300	NS	ns2.mycompany.com.
+			300	RRSIG	NS 13 2 300 (
+					20260925060748 20260826060748 11407 mycompany.com.
+					fNZQbTvTA45y0m8aipjbV7suGSyNQvj8p/lw
+					rPtwyv5HgGdcJvdIMI6Q4q+3bQbVVtcGH0+P
+					rXAN9cLZQudshg== )
+			300	A	203.130.0.12
+			300	RRSIG	A 13 2 300 (
+					20260925060748 20260826060748 11407 mycompany.com.
+					q34UKIRPeGCozPnIogbCx4CCOC4fr3HQDcSJ
+					C/czJQX0++6JGIUWXFYWoGg5fS43mr3jRomB
+					NpX5/RObbKXJnA== )
+			300	MX	10 mail.mycompany.com.
+			300	RRSIG	MX 13 2 300 (
+					20260925060748 20260826060748 11407 mycompany.com.
+					xBpIQqQhOkmLKPQ7tJOdqyBskZDyMX+wqfR2
+					dXrJiyHe5Ve3LaFjfLl2gtWAOLFrTzgQhEeN
+					R7bAaaKZ1oMeig== )
+			300	NSEC	admin.mycompany.com. A NS SOA MX RRSIG NSEC DNSKEY
+			300	RRSIG	NSEC 13 2 300 (
+					20260925060748 20260826060748 11407 mycompany.com.
+					STCTSo87NO+6GozZ6rIdx5VjV7txj1zR8dM+
+					wtXIv8P3seXbP6vw3xmpN1VKiS5GyEQN88r/
+					QzNNv+A9tP9Hdw== )
+			300	DNSKEY	256 3 13 (
+					w+vbVckUPIV+rn1EYzUQwQlg1gfB+99vqjzo
+					H14Tph9j3iEvwspoar9KrW4ED2M+P9ENpMxZ
+					H+OZar+3N3mtwg==
+					) ; ZSK; alg = ECDSAP256SHA256 ; key id = 11407
+			300	DNSKEY	257 3 13 (
+					RSNmBh6eV8wVZmEF/wa/FYrIObsjtqnxBHuY
+					7ozBbG7ZHm1QFGHfnoD+8chMdedV/R1FGi+0
+					dTZJsRLBPShFzA==
+					) ; KSK; alg = ECDSAP256SHA256 ; key id = 10875
+			300	RRSIG	DNSKEY 13 2 300 (
+					20260925060748 20260826060748 10875 mycompany.com.
+					m4IBZ1VliiZVrJoSzaDQVz6e49MMQtgkWVwj
+					RBC3n57qUqtQCK0FpLzJ0nWPfJU8HFEVLPMt
+					Bby6O9AOzHMhDw== )
+			300	RRSIG	DNSKEY 13 2 300 (
+					20260925060748 20260826060748 11407 mycompany.com.
+					GJ0Pju23lMvA+CRHq8mCT23UlAB0E21wdF78
+					Lmjq7xVYN07eLScv5pBuevhMTOo+GCQ8dsyK
+					SPG6OxUB0hLoCQ== )
+ns1.mycompany.com.	300	IN A	172.20.0.10
+			300	RRSIG	A 13 3 300 (
+					20260925060748 20260826060748 11407 mycompany.com.
+					ecvASJw9Xh5JUadCy2kSw/Umlwg+CSX34GFX
+					VXYa2tPfu+lnDMadnBXVGrUJRG6aLgsk60Xc
+					9UEIpZtmOIekjQ== )
+			300	NSEC	ns2.mycompany.com. A RRSIG NSEC
+			300	RRSIG	NSEC 13 3 300 (
+					20260925060748 20260826060748 11407 mycompany.com.
+					4+009cCpRvlL8FW0sCma/VOC3WpaX2WMY8dl
+					KAhJV+nVTvmdkJDe5qSkRhh7THFD+xhSrt06
+					gFCmVDWySzg/5w== )
+ns2.mycompany.com.	300	IN A	172.20.0.11
+			300	RRSIG	A 13 3 300 (
+					20260925060748 20260826060748 11407 mycompany.com.
+					v+SOnJ0pi0tV4gaNFOqpAbO4FskT25X2BrSt
+					1cuPBcifoMVqqFqQ0Wf9UJccjyfWu61ZqL5c
+					wizWVfo7yURVUA== )
+			300	NSEC	staging.mycompany.com. A RRSIG NSEC
+			300	RRSIG	NSEC 13 3 300 (
+					20260925060748 20260826060748 11407 mycompany.com.
+					lmuJnsbAXAqeo+Ymj6t3dQXiJIwTvw36kB6n
+					9WlfGIwnMAIHdZDGcoxZAOA8zW7BZM+tDEOU
+					Sljg6PGFORj/dQ== )
+api.mycompany.com.	300	IN A	203.12.1.1
+			300	RRSIG	A 13 3 300 (
+					20260925060748 20260826060748 11407 mycompany.com.
+					Q3BK5sczmNOO7yDKsjWM8Y9J31oZKAvs6Z7U
+					UmoaojZ5QYG+M/uMXVseewWW0Df0DHwGNc9Q
+					X2q1kuSEwGGGoA== )
+			300	NSEC	mail.mycompany.com. A RRSIG NSEC
+			300	RRSIG	NSEC 13 3 300 (
+					20260925060748 20260826060748 11407 mycompany.com.
+					pTnaH0J+3hYeK4SjJHKk/XzcPUrN5Wg+jrii
+					5QyFgE4Oxg7Tr66wzNA9RuawUrw/MWAzPT10
+					9sbUmRn0UdrjHQ== )
+www.mycompany.com.	300	IN CNAME mycompany.com.
+			300	RRSIG	CNAME 13 3 300 (
+					20260925060748 20260826060748 11407 mycompany.com.
+					cry8z3h2awCRWvBxAI7Y2lVvm3xHSezb14SQ
+					fm3s6qW0mJdyv5ywDrNqWODOkjfprB7r60oZ
+					bSSPZ1DZrxe2Dw== )
+			300	NSEC	mycompany.com. CNAME RRSIG NSEC
+			300	RRSIG	NSEC 13 3 300 (
+					20260925060748 20260826060748 11407 mycompany.com.
+					D1wOPhauxe5imtEcVOWs/MTdnkg2AryCGy3p
+					mEHpecD0yqOWah3PlAcm6pGEOhST07/VI2vB
+					ZEzp/F7jIJcjQg== )
+admin.mycompany.com.	300	IN A	203.12.1.2
+			300	RRSIG	A 13 3 300 (
+					20260925060748 20260826060748 11407 mycompany.com.
+					8sgKj7plnCl0pCpJCQrH56ge7qVZ6qQ6fi8Z
+					y46G93C7b6EWdtx51Y+CATLe3utOXJTdFEE7
+					0GMv8Y0TH/TOlA== )
+			300	NSEC	api.mycompany.com. A RRSIG NSEC
+			300	RRSIG	NSEC 13 3 300 (
+					20260925060748 20260826060748 11407 mycompany.com.
+					PScbqWAWxpJiwdT6pw+G9owRzTMss3U7Vz4m
+					Nn8+B1uH4C85Ap6QN8AsJLkXLyQc5WiMtrQc
+					3/uvp8CL044BtA== )
+staging.mycompany.com.	300	IN A	203.12.1.3
+			300	RRSIG	A 13 3 300 (
+					20260925060748 20260826060748 11407 mycompany.com.
+					poVaubQ03x4tskgwh0s6QWPOZt4y1etGcU1z
+					aIZB8WqshLWDVFboY0wJVgFn7C/vkWPdc7Tw
+					ESagEyOIIc5Guw== )
+			300	NSEC	www.mycompany.com. A RRSIG NSEC
+			300	RRSIG	NSEC 13 3 300 (
+					20260925060748 20260826060748 11407 mycompany.com.
+					+RO9Ao+qsEtrrjt8t4CWpyHJNB75RYB2uLeA
+					qYgaayd3oQJHGxyk7j5nUIWXhdPmavGcX8G7
+					OMbaSGng/VhYYA== )
+mail.mycompany.com.	300	IN A	201.131.0.11
+			300	RRSIG	A 13 3 300 (
+					20260925060748 20260826060748 11407 mycompany.com.
+					Lxw3i9c3+Vw/KlmSafZs2ibYOUutDBR6FiNZ
+					ll3wgcxddAlrvQNboGxZ7wiy9SE6d9B6WTEs
+					Xdmk4KOiyXUWKA== )
+			300	NSEC	ns1.mycompany.com. A RRSIG NSEC
+			300	RRSIG	NSEC 13 3 300 (
+					20260925060748 20260826060748 11407 mycompany.com.
+					3/4JcwcqXCvcLbaTOJbeLW/MtBQmJ1D9G1gF
+					FHGQVjdlCMk95LGZz6QyEZb8RVxbEREyeSKv
+					mynF2sUsW1qitg== )
