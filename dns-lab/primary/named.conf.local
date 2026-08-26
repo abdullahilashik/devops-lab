@@ -1,0 +1,31 @@
+// primary/named.conf.local
+
+zone "mycompany.com" {
+
+    /*
+     * This server is the primary source
+     * of the zone.
+     */
+    type primary;
+
+    /*
+     * The actual zone database.
+     */
+    file "/etc/bind/zones/db.mycompany.com";
+
+    /*
+     * Only our secondary DNS server may
+     * perform zone transfers.
+     */
+    allow-transfer {
+        172.20.0.11;
+    };
+
+    /*
+     * Tell the secondary immediately when
+     * the zone changes.
+     */
+    also-notify {
+        172.20.0.11;
+    };
+};

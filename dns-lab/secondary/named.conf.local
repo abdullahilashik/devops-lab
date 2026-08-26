@@ -1,0 +1,21 @@
+// secondary/named.conf.local
+
+zone "mycompany.com" {
+
+    /*
+     * This server is a secondary.
+     */
+    type secondary;
+
+    /*
+     * The primary DNS server.
+     */
+    primaries {
+        172.20.0.10;
+    };
+
+    /*
+     * BIND will store the transferred zone here.
+     */
+    file "/var/cache/bind/db.mycompany.com";
+};

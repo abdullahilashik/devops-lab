@@ -1,13 +1,44 @@
 services:
-  dns:
+
+  dns-primary:
     image: ubuntu/bind9:latest
-    container_name: dns-lab
-    restart: unless-stopped
+    container_name: dns-primary
+
+    networks:
+      dns-network:
+        ipv4_address: 172.20.0.10
 
     ports:
       - "5353:53/tcp"
       - "5353:53/udp"
 
     volumes:
-      - ./named.conf:/etc/bind/named.conf:ro
-      - ./zones:/etc/bind/zones:ro
+      - ./primary/named.conf:/etc/bind/named.conf:ro
+      - ./primary/named.conf.options:/etc/bind/named.conf.options:ro
+      - ./primary/named.conf.local:/etc/bind/named.conf.local:ro
+      - ./primary/zones:/etc/bind/zones:ro
+
+  dns-secondary:
+    image: ubuntu/bind9:latest
+    container_name: dns-secondary
+
+    networks:
+      dns-network:
+        ipv4_address: 172.20.0.11
+
+    volumes:
+      - ./secondary/named.conf:/etc/bind/named.conf:ro
+      - ./secondary/named.conf.options:/etc/bind/named.conf.options:ro
+      - ./secondary/named.conf.local:/etc/bind/named.conf.local:ro
+      - secondary-cache:/var/cache/bind
+
+networks:
+  dns-network:
+    driver: bridge
+
+    ipam:
+      config:
+        - subnet: 172.20.0.0/24
+
+volumes:
+  secondary-cache:

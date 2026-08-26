@@ -1,0 +1,18 @@
+// secondary/named.conf.options
+
+options {
+    directory "/var/cache/bind";
+
+    listen-on { any; };
+
+    listen-on-v6 { none; };
+
+    /*
+     * This is authoritative DNS only.
+     */
+    recursion no;
+
+    allow-query { any; };
+
+    dnssec-validation auto;
+};

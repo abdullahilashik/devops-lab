@@ -1,0 +1,33 @@
+// primary/named.conf.options
+
+options {
+    directory "/var/cache/bind";
+
+    /*
+     * Listen on all IPv4 interfaces inside the container.
+     */
+    listen-on { any; };
+
+    /*
+     * We are not using IPv6 in this lab.
+     */
+    listen-on-v6 { none; };
+
+    /*
+     * This server is authoritative DNS.
+     * It is NOT a recursive resolver.
+     */
+    recursion no;
+
+    /*
+     * Allow DNS queries.
+     */
+    allow-query { any; };
+
+    /*
+     * BIND DNSSEC validation is irrelevant for our
+     * unsigned laboratory zone, but this is the
+     * standard BIND option.
+     */
+    dnssec-validation auto;
+};
