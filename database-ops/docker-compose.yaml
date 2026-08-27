@@ -1,0 +1,46 @@
+# services:
+#   db:
+#     image: postgres:15
+#     container_name: devops_db
+#     environment:
+#       POSTGRES_USER: admin
+#       POSTGRES_PASSWORD: password123
+#       POSTGRES_DB: company_db
+#     ports:
+#       - "5432:5432"
+#     volumes:
+#       - postgres_data:/var/lib/postgresql/data
+#       - ./migrations:/migrations
+#       - ./db.sh:/db.sh
+
+#   adminer:
+#     image: adminer
+#     container_name: database_ui
+#     ports:
+#       - "8080:8080"
+
+# volumes:
+#   postgres_data:
+
+
+
+services:
+  db_primary:
+    image: postgres:15
+    container_name: db_primary
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: password123
+      POSTGRES_DB: company_db
+    ports:
+      - "5432:5432"
+
+  db_replica:
+    image: postgres:15
+    container_name: db_replica
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: password123
+      POSTGRES_DB: company_db
+    ports:
+      - "5433:5432" # Different host port so they don't clash
