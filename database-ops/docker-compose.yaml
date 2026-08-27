@@ -1,46 +1,66 @@
-# services:
-#   db:
-#     image: postgres:15
-#     container_name: devops_db
-#     environment:
-#       POSTGRES_USER: admin
-#       POSTGRES_PASSWORD: password123
-#       POSTGRES_DB: company_db
-#     ports:
-#       - "5432:5432"
-#     volumes:
-#       - postgres_data:/var/lib/postgresql/data
-#       - ./migrations:/migrations
-#       - ./db.sh:/db.sh
-
-#   adminer:
-#     image: adminer
-#     container_name: database_ui
-#     ports:
-#       - "8080:8080"
-
-# volumes:
-#   postgres_data:
-
-
-
 services:
-  db_primary:
+  mysql_db:
+      image: mysql:8.0
+      container_name: mysql_devops
+      environment:
+        MYSQL_ROOT_PASSWORD: rootpassword
+        MYSQL_DATABASE: company_db
+        MYSQL_USER: admin
+        MYSQL_PASSWORD: password123
+      ports:
+        - "3306:3306"
+      volumes:
+        - mysql_data:/var/lib/mysql
+
+  db:
     image: postgres:15
-    container_name: db_primary
+    container_name: devops_db
     environment:
       POSTGRES_USER: admin
       POSTGRES_PASSWORD: password123
       POSTGRES_DB: company_db
     ports:
       - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./migrations:/migrations
+      - ./db.sh:/db.sh
 
-  db_replica:
-    image: postgres:15
-    container_name: db_replica
-    environment:
-      POSTGRES_USER: admin
-      POSTGRES_PASSWORD: password123
-      POSTGRES_DB: company_db
+  adminer:
+    image: adminer
+    container_name: database_ui
     ports:
-      - "5433:5432" # Different host port so they don't clash
+      - "8080:8080"
+
+volumes:
+  mysql_data:
+  postgres_data:
+
+
+
+# services:
+#   db_primary:
+#     image: postgres:15
+#     container_name: db_primary
+#     environment:
+#       POSTGRES_USER: admin
+#       POSTGRES_PASSWORD: password123
+#       POSTGRES_DB: company_db
+#       PGPASSFILE: /var/lib/postgresql/.pgpass  # <--- Add this line
+#     ports:
+#       - "5432:5432"
+#     volumes:
+#       - ./migrations:/migrations
+#       - ./db.sh:/db.sh
+#       - ./backup.sh:/backup.sh
+#       - ./verify_backup.sh:/verify_backup.sh
+
+#   db_replica:
+#     image: postgres:15
+#     container_name: db_replica
+#     environment:
+#       POSTGRES_USER: admin
+#       POSTGRES_PASSWORD: password123
+#       POSTGRES_DB: company_db
+#     ports:
+#       - "5433:5432" # Different host port so they don't clash
